@@ -4,8 +4,8 @@ project(classeinecore)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(classeinecore SHARED src/classeine/core/string_tools.h src/classeine/core/string_tools.cpp)
+add_library(classeinecore SHARED code/inc/classeine/core/string_tools.h code/src/classeine/core/string_tools.cpp)
 
-target_include_directories(classeinecore PRIVATE ${CMAKE_SOURCE_DIR})
+target_include_directories(classeinecore PRIVATE code/inc)
 
 
