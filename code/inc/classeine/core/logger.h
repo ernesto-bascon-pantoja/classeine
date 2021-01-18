@@ -1,12 +1,13 @@
 #pragma once
 
+#include "_concept_log_output.h"
 #include "configuration.h"
 #include "log_level.h"
 #include "log_writer.h"
 
 namespace classeine::core
 {
-    template <typename Output>
+    template <CLogOutput Output>
     class logger
     {
         const configuration& conf;
