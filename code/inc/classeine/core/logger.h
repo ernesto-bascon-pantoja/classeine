@@ -21,6 +21,12 @@ namespace classeine::core
         {
         }
 
+        logger(const logger<Output>& ) = delete;
+        logger(logger<Output>&& ) = delete;
+
+        auto& operator=(const logger<Output>& ) = delete;
+        auto& operator=(logger<Output>&& ) = delete;
+
         log_writer<logger<Output>> create_logger(const std::string& context_name, bool start_end_output)
         {
             return log_writer<logger<Output>>{*this, context_name, start_end_output};

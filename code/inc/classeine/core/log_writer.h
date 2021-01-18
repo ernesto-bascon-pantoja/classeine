@@ -26,8 +26,8 @@ namespace classeine::core
         log_writer(const log_writer<Logger>& ) = delete;
         log_writer(log_writer<Logger>&& ) = delete;
 
-        auto operator=(const log_writer<Logger>& ) = delete;
-        auto operator=(log_writer<Logger>& ) = delete;
+        auto& operator=(const log_writer<Logger>& ) = delete;
+        auto& operator=(log_writer<Logger>& ) = delete;
 
         auto create_logger(const std::string& subcontext, bool start_end_output)
         {
