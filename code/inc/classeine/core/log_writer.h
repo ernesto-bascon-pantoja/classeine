@@ -2,11 +2,12 @@
 
 #include "log_level.h"
 #include "string_tools.h"
+#include "unique_object.h"
 
 namespace classeine::core
 {
     template <typename Logger>
-    class log_writer
+    class log_writer : public unique_object
     {
         Logger& logger;
         std::string context;
@@ -22,12 +23,6 @@ namespace classeine::core
             if (start_end_output)
                 debug("Starting [", context, "]");
         }
-
-        log_writer(const log_writer<Logger>& ) = delete;
-        log_writer(log_writer<Logger>&& ) = delete;
-
-        auto& operator=(const log_writer<Logger>& ) = delete;
-        auto& operator=(log_writer<Logger>& ) = delete;
 
         auto create_logger(const std::string& subcontext, bool start_end_output)
         {

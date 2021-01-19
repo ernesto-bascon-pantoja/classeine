@@ -4,11 +4,12 @@
 #include "configuration.h"
 #include "log_level.h"
 #include "log_writer.h"
+#include "unique_object.h"
 
 namespace classeine::core
 {
     template <CLogOutput Output>
-    class logger
+    class logger : public unique_object
     {
         const configuration& conf;
         log_level output_level;
@@ -20,12 +21,6 @@ namespace classeine::core
               output_level{static_cast<log_level>(std::stoi(conf.get_or_default("log", "level", "3")))}
         {
         }
-
-        logger(const logger<Output>& ) = delete;
-        logger(logger<Output>&& ) = delete;
-
-        auto& operator=(const logger<Output>& ) = delete;
-        auto& operator=(logger<Output>&& ) = delete;
 
         log_writer<logger<Output>> create_logger(const std::string& context_name, bool start_end_output)
         {
