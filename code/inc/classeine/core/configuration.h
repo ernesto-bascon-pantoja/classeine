@@ -2,12 +2,13 @@
 
 #include "unique_object.h"
 
+#include <memory>
 #include <unordered_map>
 #include <string>
 
 namespace classeine::core
 {
-    class configuration : public unique_object
+    class configuration final : public unique_object
     {
     private:
         std::unordered_map<std::string, std::unordered_map<std::string, std::string>> sections;
@@ -20,4 +21,6 @@ namespace classeine::core
                         const std::string& key,
                         const std::string& default_value) const;
     };
+
+    std::shared_ptr<configuration> make_configuration();
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "configuration.h"
+#include "log_writer.h"
 
 namespace classeine::core
 {
@@ -8,15 +9,16 @@ namespace classeine::core
     class domain : public unique_object
     {
         const configuration& conf;
-        std::string name;
         Logger logger;
+        std::string name;
+        log_writer<Logger> writer;
 
     public:
-        domain(const configuration& conf,
-               const std::string& name,
-               bool start_end_output)
-            : conf{conf}, name{name},
-              logger{conf, name, start_end_output}
+        domain(const configuration& conf, const std::string& name)
+            : conf{conf},
+              logger{conf},
+              name{name},
+              writer{logger.create_writer(name, true)}
         {
         }
 

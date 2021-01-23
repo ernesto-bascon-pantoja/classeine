@@ -8,9 +8,10 @@ namespace classeine::core
      */
     class unique_object
     {
-    public:
+    protected:
         unique_object() = default;
 
+    public:
         unique_object(const unique_object& ) = delete;
         unique_object(unique_object&& ) = delete;
 

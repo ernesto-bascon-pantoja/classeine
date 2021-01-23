@@ -1,5 +1,11 @@
 #include "classeine/core/configuration.h"
 
+std::shared_ptr<classeine::core::configuration>
+classeine::core::make_configuration()
+{
+    return std::make_shared<configuration>();
+}
+
 void classeine::core::configuration::set(const std::string &section, const std::string &key, const std::string &value)
 {
     sections[section][key] = value;
