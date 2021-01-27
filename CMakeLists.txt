@@ -4,7 +4,7 @@ project(classeinecore)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(classeinecore SHARED code/inc/classeine/core/string_tools.h code/src/classeine/core/string_tools.cpp code/inc/classeine/core/configuration.h code/src/classeine/core/configuration.cpp code/inc/classeine/core/log_level.h code/src/classeine/core/log_level.cpp code/inc/classeine/core/log_console_output.h code/src/classeine/core/log_console_output.cpp code/inc/classeine/core/log_writer.h code/inc/classeine/core/_concept_log_output.h code/inc/classeine/core/unique_object.h code/inc/classeine/core/domain.h code/inc/classeine/net/rest_server.h code/inc/classeine/core/entity.h code/inc/classeine/core/logger.h)
+add_library(classeinecore SHARED code/inc/classeine/core/string_tools.h code/src/classeine/core/string_tools.cpp code/inc/classeine/core/configuration.h code/src/classeine/core/configuration.cpp code/inc/classeine/core/log_level.h code/src/classeine/core/log_level.cpp code/inc/classeine/core/log_console_output.h code/src/classeine/core/log_console_output.cpp code/inc/classeine/core/log_writer.h code/inc/classeine/core/CLogOutput.h code/inc/classeine/core/unique_object.h code/inc/classeine/net/rest_server.h code/inc/classeine/core/logger.h code/inc/classeine/core/CDomain.h code/inc/classeine/core/domain.h code/inc/classeine/core/entity.h)
 
 target_include_directories(classeinecore PRIVATE code/inc)
 

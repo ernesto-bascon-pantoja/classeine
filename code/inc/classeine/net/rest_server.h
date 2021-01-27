@@ -6,15 +6,13 @@ namespace classeine::net
 {
     using namespace classeine::core;
 
-    template <typename Logger>
-    class rest_server : public entity<Logger>
+    template <typename Domain>
+    class rest_server : public entity<Domain>
     {
     public:
-        rest_server(domain<Logger>& parent_domain)
-            : entity<Logger>{parent_domain, "rest_server", true}
+        rest_server(Domain& parent_domain)
+            : entity<Domain>{parent_domain, "rest_server"}
         {
-
         }
-
     };
 }

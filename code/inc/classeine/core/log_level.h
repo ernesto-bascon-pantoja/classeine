@@ -13,4 +13,6 @@ namespace classeine::core
     };
 
     std::string_view to_string(log_level level);
+
+    std::ostream& operator<<(std::ostream& os, log_level level);
 }

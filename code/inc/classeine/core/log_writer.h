@@ -18,16 +18,15 @@ namespace classeine::core
         bool start_end_output;
 
     public:
-        template <typename String>
         log_writer(
                 const configuration& conf,
                 Logger& logger,
-                String&& context_name,
+                const std::string& context_name,
                 bool start_end_output)
             :
                 conf{conf},
                 logger{logger},
-                context_name{std::forward<const std::string>(context_name)},
+                context_name{context_name},
                 start_end_output{start_end_output}
         {
             if (start_end_output)
@@ -37,7 +36,7 @@ namespace classeine::core
     public:
         auto create_writer(const std::string& subcontext, bool start_end_output)
         {
-            std::string context_name = string_tools::build_string(context_name, "::", subcontext);
+            std::string context_name = string_tools::build_string(this->context_name, "::", subcontext);
             return log_writer<Logger>{conf, logger, std::move(context_name), start_end_output};
         }
 

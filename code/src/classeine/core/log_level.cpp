@@ -13,3 +13,9 @@ classeine::core::to_string(log_level level)
 
     return "UNKNOWN";
 }
+
+std::ostream& classeine::core::operator<<(std::ostream& os, log_level level)
+{
+    os << to_string(level);
+    return os;
+}

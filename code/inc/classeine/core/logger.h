@@ -1,6 +1,7 @@
 #pragma once
 
-#include "_concept_log_output.h"
+#include "CLogOutput.h"
+
 #include "log_writer.h"
 #include "unique_object.h"
 
