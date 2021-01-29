@@ -11,8 +11,7 @@ Application library for C++20
     - String handling
     - Configuration
     - Logging
-* classeine::db
-    - Library to access DBs. Implemented for PostgreSQL.
+    
 * classeine::net
     - REST server built on top of [CivetWeb](https://github.com/civetweb/civetweb).
     
