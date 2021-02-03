@@ -18,20 +18,33 @@ namespace classeine::net
     public:
         rest_server(Domain& parent_domain)
             : entity<Domain>{parent_domain, "rest_server"},
-              ctx{mg_start(NULL, 0, NULL)}
+              ctx{nullptr}
         {
             mg_init_library(0);
         }
 
         ~rest_server()
         {
-            mg_stop(ctx);
+            if (ctx !=  nullptr)
+            {
+                mg_stop(ctx);
+            }
+
             mg_exit_library();
         }
 
+
         void start()
         {
-            mg_set_request_handler(ctx, "/hello", handler, (void*) "Hello world");
+            auto ports = this->get_conf().get_or_default("rest_server", "ports", "8080");
+
+            this->info("Listening to ports [", ports, "]");
+
+            const char* options[] = { "listening_ports", ports.data(), nullptr };
+
+            ctx = mg_start(nullptr, nullptr, options);
+
+            mg_set_request_handler(ctx, "/hello", handler, nullptr);
         }
 
         void add_controller()

@@ -20,28 +20,31 @@ namespace classeine::core
 
         }
 
+        auto& get_conf() noexcept { return domain.get_conf(); }
+        const auto& get_conf() const noexcept { return domain.get_conf(); }
+
         template <typename...Args>
         void error(const Args&... args)
         {
-            the_log_writer.error(log_level::error, args...);
+            the_log_writer.error(args...);
         }
 
         template <typename...Args>
         void warning(const Args&... args)
         {
-            the_log_writer.warning(log_level::warning, args...);
+            the_log_writer.warning(args...);
         }
 
         template <typename...Args>
         void info(const Args&... args)
         {
-            the_log_writer.info(log_level::info, args...);
+            the_log_writer.info(args...);
         }
 
         template <typename...Args>
         void debug(const Args&... args)
         {
-            the_log_writer.debug(log_level::debug, args...);
+            the_log_writer.debug(args...);
         }
     };
 }
