@@ -47,25 +47,25 @@ namespace classeine::core
         }
 
         template <typename...Args>
-        void error(const Args&... args)
+        void log_error(const Args&... args)
         {
             write(log_level::error, args...);
         }
 
         template <typename...Args>
-        void warning(const Args&... args)
+        void log_warning(const Args&... args)
         {
             write(log_level::warning, args...);
         }
 
         template <typename...Args>
-        void info(const Args&... args)
+        void log_info(const Args&... args)
         {
             write(log_level::info, args...);
         }
 
         template <typename...Args>
-        void debug(const Args&... args)
+        void log_debug(const Args&... args)
         {
             write(log_level::debug, args...);
         }

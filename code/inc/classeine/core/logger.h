@@ -22,7 +22,7 @@ namespace classeine::core
               output_level{static_cast<log_level>(std::stoi(conf.get_or_default("log", "level", "3")))},
               writer{create_writer("log", true)}
         {
-            writer.debug("Log level: ", to_string(output_level));
+            writer.log_debug("Log level: ", to_string(output_level));
         }
 
         auto create_writer(const std::string& context_name, bool start_end_log_output)
