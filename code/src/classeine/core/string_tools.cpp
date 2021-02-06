@@ -12,3 +12,9 @@ bool classeine::core::string_tools::starts_with(const std::string& str, const st
     std::string_view sv = str;
     return sv.starts_with(prefix);
 }
+
+std::string_view
+classeine::core::string_tools::to_safe_string_view(const char *str)
+{
+    return str == nullptr ? "" : str;
+}

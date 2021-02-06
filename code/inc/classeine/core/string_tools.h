@@ -2,12 +2,16 @@
 
 #include <iostream>
 #include <sstream>
+#include <string_view>
+
 
 namespace classeine::core::string_tools
 {
     void hello_world();
 
     bool starts_with(const std::string& str, const std::string& prefix);
+
+    std::string_view to_safe_string_view(const char* str);
 
     template <typename T>
     void build_stream(std::ostream& os, const T& val)

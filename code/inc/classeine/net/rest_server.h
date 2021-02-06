@@ -6,7 +6,7 @@
 
 #include "classeine/core/entity.h"
 
-#include "classeine/net/civetweb_utils.h"
+#include "classeine/net/civetweb_tools.h"
 
 
 
@@ -62,6 +62,9 @@ namespace classeine::net
 
         int process_request(mg_connection& conn, const http_request& request)
         {
+            std::cout << "URI: " << request.get_uri() << "\n";
+            std::cout << "METHOD: " << to_string(request.get_method()) << "\n";
+
 //            auto optional_controller = find_controller(request);
 //            if (optional_controller.has_value())
 //            {
@@ -79,7 +82,7 @@ namespace classeine::net
         {
             auto& the_rest_server = *reinterpret_cast<rest_server<Domain>*>(rest_server_ptr);
 
-            return the_rest_server.process_request(*conn, civetweb_utils::get_request(*conn));
+            return the_rest_server.process_request(*conn, civetweb_tools::get_request(*conn));
         }
     };
 }

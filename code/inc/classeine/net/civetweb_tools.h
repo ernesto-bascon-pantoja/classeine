@@ -4,7 +4,7 @@
 
 struct mg_connection;
 
-namespace classeine::net::civetweb_utils
+namespace classeine::net::civetweb_tools
 {
     http_request get_request(const mg_connection& conn);
 }
