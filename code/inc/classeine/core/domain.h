@@ -42,27 +42,27 @@ namespace classeine::core
 
 
         template <typename...Args>
-        void error(const Args&... args)
+        void log_error(const Args&... args)
         {
-            the_log_writer.error(args...);
+            the_log_writer.log_error(args...);
         }
 
         template <typename...Args>
-        void warning(const Args&... args)
+        void log_warning(const Args&... args)
         {
-            the_log_writer.warning(args...);
+            the_log_writer.log_warning(args...);
         }
 
         template <typename...Args>
-        void info(const Args&... args)
+        void log_info(const Args&... args)
         {
-            the_log_writer.info(args...);
+            the_log_writer.log_info(args...);
         }
 
         template <typename...Args>
-        void debug(const Args&... args)
+        void log_debug(const Args&... args)
         {
-            the_log_writer.debug(args...);
+            the_log_writer.log_debug(args...);
         }
     };
 }

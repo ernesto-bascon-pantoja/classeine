@@ -1,12 +1,16 @@
 #pragma once
 
+#include <memory>
 #include <string_view>
+#include <unordered_map>
 
 #include "civetweb.h"
 
 #include "classeine/core/entity.h"
 
 #include "classeine/net/civetweb_tools.h"
+#include "classeine/net/rest_controller.h"
+#include "classeine/net/rest_path.h"
 
 
 
@@ -18,9 +22,15 @@ namespace classeine::net
     template <typename Domain>
     class rest_server : public entity<Domain>
     {
+        using rest_controller_type = rest_controller<Domain>;
+        using rest_endpoint_handler_type = rest_endpoint_handler<Domain>;
+
         mg_context* ctx;
 
         std::string app_name;
+
+        std::unordered_map<std::string, std::unique_ptr<rest_controller_type>> controllers;
+
 
     public:
         template <typename String>
@@ -55,9 +65,35 @@ namespace classeine::net
             mg_set_request_handler(ctx, "", server_handler, this);
         }
 
-        void add_controller()
+        template <typename RestController>
+        void add_controller(std::unique_ptr<RestController>&& controller)
         {
+            auto& name = controller->get_name();
 
+            this->log_debug("Inserting controller: [", name, "]");
+
+            controllers[name] = std::move(controller);
+        }
+
+        std::optional<std::reference_wrapper<rest_controller_type>> get_controller_by_path(const rest_path& path) const
+        {
+            auto name = std::string {path.get_controller_name() };
+            auto controller_it = controllers.find(name);
+            if (controller_it == controllers.end())
+                return std::nullopt;
+
+            return std::ref(*(controller_it->second));
+        }
+
+        std::optional<rest_endpoint_handler_type> find_request_handler(const http_request& request) const
+        {
+            rest_path path { request };
+
+            auto optional_controller = get_controller_by_path(path);
+
+
+
+            return { };
         }
 
         int process_request(mg_connection& conn, const http_request& request)
@@ -65,7 +101,7 @@ namespace classeine::net
             std::cout << "URI: " << request.get_uri() << "\n";
             std::cout << "METHOD: " << to_string(request.get_method()) << "\n";
 
-//            auto optional_controller = find_controller(request);
+            auto optional_request_handler = find_request_handler(request);
 //            if (optional_controller.has_value())
 //            {
 //                std::string result = optional_controller->process_request(request);
