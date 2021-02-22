@@ -9,6 +9,8 @@
 #include "classeine/core/entity.h"
 
 #include "classeine/net/civetweb_tools.h"
+#include "classeine/net/http_exception.h"
+#include "classeine/net/http_status_codes.h"
 #include "classeine/net/rest_controller.h"
 #include "classeine/net/rest_path.h"
 
@@ -90,10 +92,14 @@ namespace classeine::net
             rest_path path { request };
 
             auto optional_controller = get_controller_by_path(path);
+            if (optional_controller)
+            {
 
+            }
 
-
-            return { };
+            throw http_exception {
+                http_status_codes::http_404_not_found,
+                string_tools::build_string("Resource [", request.get_uri(), "] not found") };
         }
 
         int process_request(mg_connection& conn, const http_request& request)

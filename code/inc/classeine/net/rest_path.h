@@ -12,7 +12,6 @@ namespace classeine::net
         std::vector<std::string_view> path;
 
     public:
-        rest_path();
         rest_path(const http_request& req);
 
         std::string_view get_controller_name() const noexcept;

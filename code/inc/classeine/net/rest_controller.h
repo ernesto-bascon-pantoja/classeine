@@ -12,12 +12,12 @@ namespace classeine::net
     template <typename ParentEntity>
     class rest_controller
     {
-        std::vector<rest_endpoint<ParentEntity>> endpoints;
+        using rest_endpoint_type = rest_endpoint<ParentEntity>;
+
+        std::vector<rest_endpoint<rest_endpoint_type>> endpoints;
 
         ParentEntity& parent;
         std::string name;
-
-        mutable rest_path cached_path;
 
     public:
         rest_controller(ParentEntity& parent, const std::string& name)
@@ -35,6 +35,11 @@ namespace classeine::net
         void add_endpoint(EndPoint&& endpoint)
         {
             endpoints.push_back(std::forward<EndPoint>(endpoint));
+        }
+
+        std::optional<std::reference_wrapper<rest_endpoint_type>> get_matching_endpoint(const rest_path& path)
+        {
+            return { };
         }
 
         const std::string& get_name() const noexcept { return name; }

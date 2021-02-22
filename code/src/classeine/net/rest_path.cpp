@@ -2,9 +2,6 @@
 
 #include "classeine/core/string_tools.h"
 
-classeine::net::rest_path::rest_path()
-{
-}
 
 classeine::net::rest_path::rest_path(const classeine::net::http_request& request)
     : path { classeine::core::string_tools::split(request.get_uri(), '/')}

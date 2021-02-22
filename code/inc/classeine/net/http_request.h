@@ -3,6 +3,7 @@
 #include <string_view>
 
 #include "http_method.h"
+#include "http_exception.h"
 
 struct mg_request_info;
 
